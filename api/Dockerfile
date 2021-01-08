@@ -1,18 +1,5 @@
-#
-# Build stage
-#
 FROM maven:3.6.0-jdk-11-slim AS build
-
-COPY . /home/app
-#COPY pom.xml /home/app
-WORKDIR /home/app
-RUN touch toto.oo
-RUN ls
-RUN mvn -f /home/app/pom.xml clean package
-#
-# Package stage
-#
-FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/demo-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/demo.jar"]
+COPY . .
+RUN mvn -f pom.xml clean package -Dmaven.test.skip=true 
+EXPOSE 8081
+CMD ["java","-jar","target/tlcdemoApp-1.0.0-SNAPSHOT-runner.jar"]

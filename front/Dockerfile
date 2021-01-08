@@ -1,13 +1,16 @@
-# Stage 1
-FROM node:10-alpine as build-step
-RUN mkdir -p /app
-WORKDIR /app
-COPY package.json /app
-RUN npm install
-COPY . /app
-RUN npm run build --prod
+FROM node:latest as build-step
+WORKDIR app/
+COPY package*.json ./
+COPY angular.json ./
+COPY tsconfig*.json ./
+COPY proxy.conf.json ./
+RUN npm install && npm install -g @angular/cli
+COPY ./src $HOME/app/src
 
-# Stage 2
-RUN mkdir -p /app/docs
-FROM nginx:1.17.1-alpine
-COPY --from=build-step /app/docs /usr/share/nginx/html
+#For deploying without Nginx
+#EXPOSE 4200
+#CMD [ "ng" , "serve" ]
+
+RUN npm run build --prod --outputPath=./dist/tlcfront
+FROM bunkerity/bunkerized-nginx as prod
+COPY --from=build-step /app/dist/tlcfront/ /www

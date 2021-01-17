@@ -11,6 +11,8 @@ COPY ./src $HOME/app/src
 #EXPOSE 4200
 #CMD [ "ng" , "serve" ]
 
+
 RUN npm run build --prod --outputPath=./dist/tlcfront
 FROM bunkerity/bunkerized-nginx as prod
+CMD ["rm","etc/nginx/redirect-http-to-https.conf"]
 COPY --from=build-step /app/dist/tlcfront/ /www

@@ -13,7 +13,7 @@ services:
       - ./server-confs:/server-confs:ro
     environment:
     # Ensemble des endpoints pour lequel il générera des certificats
-      - SERVER_NAME= tlcspeedrunlowpercent.diverse-team.fr pad.tlcspeedrunlowpercent.diverse-team.fr myadmin.tlcspeedrunlowpercent.diverse-team.fr
+      - SERVER_NAME= pad.tlcspeedrunlowpercent.diverse-team.fr tlcspeedrunlowpercent.diverse-team.fr myadmin.tlcspeedrunlowpercent.diverse-team.fr
       - SERVE_FILES=yes
       - DISABLE_DEFAULT_SERVER=no
     # Transmission de l'IP publique vers les containers

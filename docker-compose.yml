@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
 
 
@@ -13,17 +13,16 @@ services:
       - ./server-confs:/server-confs:ro
     environment:
     # Ensemble des endpoints pour lequel il générera des certificats
-      - SERVER_NAME= tlcspeedrunlowpercent.diverse-team.fr #myadmin.tlcspeedrunlowpercent.diverse-team.fr pad.tlcspeedrunlowpercent.diverse-team.fr
-      - SERVE_FILES=yes
-      - DISABLE_DEFAULT_SERVER=yes
+      - SERVER_NAME= tlcspeedrunlowpercent.diverse-team.fr myadmin.tlcspeedrunlowpercent.diverse-team.fr pad.tlcspeedrunlowpercent.diverse-team.fr
+    #  - SERVE_FILES=yes
     # Transmission de l'IP publique vers les containers
-      - PROXY_REAL_IP=yes
+    #  - PROXY_REAL_IP=yes
     #      - MAX_CLIENT_SIZE=100m
     # Configuration de letencrypt
     #  - AUTO_LETS_ENCRYPT=yes
     # redirect du 80 vers 443 automatique
       - REDIRECT_HTTP_TO_HTTPS=yes
-      - USE_LIMIT_REQ=no
+    #  - USE_LIMIT_REQ=no
     # Désactivation http2
       - HTTP2=no
     # Paramétrage des entêtes http

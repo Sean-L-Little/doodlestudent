@@ -16,18 +16,21 @@ services:
       - SERVER_NAME=tlcspeedrunlowpercent.diverse-team.fr #myadmin.tlcspeedrunlowpercent.diverse-team.fr pad.tlcspeedrunlowpercent.diverse-team.fr
       - SERVE_FILES=yes
     # Transmission de l'IP publique vers les containers
-    #  - PROXY_REAL_IP=yes
+      - PROXY_REAL_IP=yes
     #      - MAX_CLIENT_SIZE=100m
     # Configuration de letencrypt
-      - AUTO_LETS_ENCRYPT=yes
+      - AUTO_LETS_ENCRYPT=no
     # redirect du 80 vers 443 automatique
-      - REDIRECT_HTTP_TO_HTTPS=yes
+      - REDIRECT_HTTP_TO_HTTPS=no
     #  - USE_LIMIT_REQ=no
     # Désactivation http2
       - HTTP2=no
     # Paramétrage des entêtes http
       - FEATURE_POLICY=accelerometer 'none'; ambient-light-sensor 'none'; autoplay 'none'; camera 'none'; display-capture 'none'; document-domain 'none'; encrypted-media 'none'; fullscreen 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; midi 'none'; payment 'none'; picture-in-picture 'none'; speaker 'none'; sync-xhr 'self'; usb 'none'; vibrate 'none'; vr 'none'
-  
+    #Reparations
+      - USE_FAIL2BAN=no
+      - USE_BLACKLIST_IP=no
+      - BLOCK_USER_AGENT=no
   
   myadmin:
     container_name: myadmin

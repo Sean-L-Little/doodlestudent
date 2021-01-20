@@ -15,14 +15,4 @@ COPY ./src $HOME/app/src
 RUN npm run build --prod --outputPath=./dist/tlcfront
 FROM bunkerity/bunkerized-nginx as prod
 #CMD ["rm","etc/nginx/redirect-http-to-https.conf"]
-RUN apk --no-cache upgrade && \
-    apk add --no-cache --virtual=run-deps \
-      certbot \
-      bash \
-    && \
-    rm -rf /tmp/* \
-           /var/cache/apk/*  \
-           /var/tmp/*
-#Pour recuperer les certificats
-VOLUME ["/etc/letsencrypt"]
 COPY --from=build-step /app/dist/tlcfront/ /www

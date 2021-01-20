@@ -14,7 +14,7 @@ services:
     environment:
     # Ensemble des endpoints pour lequel il générera des certificats
       - SERVER_NAME=tlcspeedrunlowpercent.diverse-team.fr #myadmin.tlcspeedrunlowpercent.diverse-team.fr pad.tlcspeedrunlowpercent.diverse-team.fr
-    #  - SERVE_FILES=yes
+      - SERVE_FILES=yes
     # Transmission de l'IP publique vers les containers
     #  - PROXY_REAL_IP=yes
     #      - MAX_CLIENT_SIZE=100m

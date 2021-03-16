@@ -29,8 +29,7 @@ services:
       - FEATURE_POLICY=accelerometer 'none'; ambient-light-sensor 'none'; autoplay 'none'; camera 'none'; display-capture 'none'; document-domain 'none'; encrypted-media 'none'; fullscreen 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; midi 'none'; payment 'none'; picture-in-picture 'none'; speaker 'none'; sync-xhr 'self'; usb 'none'; vibrate 'none'; vr 'none'
     #Reparations
       - USE_FAIL2BAN=no
-      - USE_BLACKLIST_IP=no
-      - BLOCK_USER_AGENT=no
+      - DISABLE_DEFAULT_SERVER=no
   
   myadmin:
     container_name: myadmin

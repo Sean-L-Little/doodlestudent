@@ -20,10 +20,10 @@ services:
       - PROXY_REAL_IP=yes
     #      - MAX_CLIENT_SIZE=100m
     # Configuration de letencrypt
-      - AUTO_LETS_ENCRYPT=yes
+      - AUTO_LETS_ENCRYPT=no
     # redirect du 80 vers 443 automatique
-      - REDIRECT_HTTP_TO_HTTPS=yes
-    #  - USE_LIMIT_REQ=no
+      - REDIRECT_HTTP_TO_HTTPS=no
+      - USE_LIMIT_REQ=no
     # Désactivation http2
       - HTTP2=no
     # Paramétrage des entêtes http

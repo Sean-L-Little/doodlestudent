@@ -10,7 +10,8 @@ services:
      - "443:8443"
     #command: "ng serve --host 0.0.0.0 "
     volumes:
-      - ./server-confs:/server-confs:ro
+      - ./server-confs:/server-confs
+      - ./certificates:/etc/letsencrypt
     environment:
     # Ensemble des endpoints pour lequel il générera des certificats
       - SERVER_NAME=tlcspeedrunlowpercent.diverse-team.fr #myadmin.tlcspeedrunlowpercent.diverse-team.fr pad.tlcspeedrunlowpercent.diverse-team.fr
@@ -19,9 +20,9 @@ services:
       - PROXY_REAL_IP=yes
     #      - MAX_CLIENT_SIZE=100m
     # Configuration de letencrypt
-      - AUTO_LETS_ENCRYPT=no
+      - AUTO_LETS_ENCRYPT=yes
     # redirect du 80 vers 443 automatique
-      - REDIRECT_HTTP_TO_HTTPS=no
+      - REDIRECT_HTTP_TO_HTTPS=yes
     #  - USE_LIMIT_REQ=no
     # Désactivation http2
       - HTTP2=no
@@ -74,7 +75,7 @@ services:
     ports:
       - "9001:9001"
     volumes:
-      - ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
+      - ./api/APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
 
 
   mail:

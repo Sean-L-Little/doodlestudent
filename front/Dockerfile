@@ -1,18 +1,9 @@
-FROM node:latest as build-step
-WORKDIR app/
-COPY package*.json ./
-COPY angular.json ./
-COPY tsconfig*.json ./
-COPY proxy.conf.json ./
-RUN npm install && npm install -g @angular/cli
-COPY ./src $HOME/app/src
+FROM node:10-alpine as builder
+WORKDIR /app
+COPY package.json /app
+RUN npm install
+COPY . /app
+RUN npm run build --prod --outputPath=./dist/
 
-#For deploying without Nginx
-#EXPOSE 4200
-#CMD [ "ng" , "serve" ]
-
-
-RUN npm run build --prod --outputPath=./dist/tlcfront
-FROM bunkerity/bunkerized-nginx as prod
-#CMD ["rm","etc/nginx/redirect-http-to-https.conf"]
-COPY --from=build-step /app/dist/tlcfront/ /www
+FROM bunkerity/bunkerized-nginx
+COPY --from=builder /app/dist/tlcfront /www
